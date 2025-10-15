@@ -2,9 +2,11 @@ package br.com.microservices.creditassessor.application;
 
 import br.com.microservices.creditassessor.application.exception.ClientDataNotFoundException;
 import br.com.microservices.creditassessor.application.exception.ComunicationErrorMicroserviceException;
+import br.com.microservices.creditassessor.application.exception.RequestCardErrorException;
 import br.com.microservices.creditassessor.domain.*;
 import br.com.microservices.creditassessor.infrastructure.CardsResourceClient;
 import br.com.microservices.creditassessor.infrastructure.ClientResourceClient;
+import br.com.microservices.creditassessor.infrastructure.mqueue.CardsPostPublisher;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +25,7 @@ public class CreditAssessorService {
 
     private final ClientResourceClient resourceClient;
     private final CardsResourceClient cardsResourceClient;
+    private final CardsPostPublisher cardPublisher;
 
     public ClientSituation getClientSituation(String cpf) throws ClientDataNotFoundException, ComunicationErrorMicroserviceException{
         try{
@@ -68,6 +72,16 @@ public class CreditAssessorService {
                 throw new ClientDataNotFoundException();
             }
             throw new ComunicationErrorMicroserviceException(e.getMessage(), status);
+        }
+    }
+
+    public RequestCardProtocol requestCard(RequestCardData data){
+        try{
+            cardPublisher.requestCard(data);
+            String protocol = UUID.randomUUID().toString();
+            return new RequestCardProtocol(protocol);
+        } catch (Exception e){
+            throw new RequestCardErrorException(e.getMessage());
         }
     }
 

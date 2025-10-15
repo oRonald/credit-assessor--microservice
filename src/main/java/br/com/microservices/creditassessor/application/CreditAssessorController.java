@@ -2,9 +2,8 @@ package br.com.microservices.creditassessor.application;
 
 import br.com.microservices.creditassessor.application.exception.ClientDataNotFoundException;
 import br.com.microservices.creditassessor.application.exception.ComunicationErrorMicroserviceException;
-import br.com.microservices.creditassessor.domain.ClientEvaluation;
-import br.com.microservices.creditassessor.domain.EvaluateData;
-import br.com.microservices.creditassessor.domain.ClientSituation;
+import br.com.microservices.creditassessor.application.exception.RequestCardErrorException;
+import br.com.microservices.creditassessor.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +42,16 @@ public class CreditAssessorController {
             return ResponseEntity.notFound().build();
         } catch (ComunicationErrorMicroserviceException e) {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("request-card")
+    public ResponseEntity requestCard(@RequestBody RequestCardData data){
+        try{
+            RequestCardProtocol protocol = service.requestCard(data);
+            return ResponseEntity.ok(protocol);
+        } catch (RequestCardErrorException e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }
