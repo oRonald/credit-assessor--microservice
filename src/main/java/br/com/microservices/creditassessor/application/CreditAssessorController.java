@@ -6,8 +6,11 @@ import br.com.microservices.creditassessor.application.exception.RequestCardErro
 import br.com.microservices.creditassessor.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.attribute.standard.Media;
 
 @RestController
 @RequestMapping("/credit-assessor")
@@ -21,7 +24,7 @@ public class CreditAssessorController {
         return "ok";
     }
 
-    @GetMapping(value = "client-situation", params = "cpf")
+    @GetMapping(value = "client-situation", params = "cpf", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity checkClientSituation(@RequestParam String cpf){
         try {
             ClientSituation situation = service.getClientSituation(cpf);
@@ -33,7 +36,7 @@ public class CreditAssessorController {
         }
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity makeAssessment(@RequestBody EvaluateData data){
         try {
             ClientEvaluation clientEvaluation = service.makeEvaluation(data.getCpf(), data.getIncome());
