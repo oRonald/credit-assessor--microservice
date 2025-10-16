@@ -12,9 +12,9 @@ import java.util.List;
 @FeignClient(value = "cards", path = "/cards")
 public interface CardsResourceClient {
 
-    @GetMapping
+    @GetMapping(path = "/by-cpf")
     public ResponseEntity<List<ClientCard>> cardByClients(@RequestParam String cpf);
 
-    @GetMapping
+    @GetMapping(path = "/by-income")
     ResponseEntity<List<Card>> findByIncomeLessThanEqual(@RequestParam Long income);
 }
