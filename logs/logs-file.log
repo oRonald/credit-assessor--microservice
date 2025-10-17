@@ -620,3 +620,15 @@ org.springframework.web.client.UnknownContentTypeException: Could not extract re
 2025-10-16T16:00:39.838-03:00  INFO 9088 --- [creditassessor] [http-nio-auto-1-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 138 ms
 2025-10-16T16:03:04.951-03:00  INFO 9088 --- [creditassessor] [http-nio-auto-1-exec-9] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
 2025-10-16T16:03:05.001-03:00  INFO 9088 --- [creditassessor] [http-nio-auto-1-exec-9] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#5b1ff8cd:0/SimpleConnection@27e5b240 [delegate=amqp://guest@127.0.0.1:5672/, localPort=54495]
+2025-10-16T16:04:57.723-03:00  INFO 9088 --- [creditassessor] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-16T16:09:57.739-03:00  INFO 9088 --- [creditassessor] [AsyncResolver-bootstrap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2025-10-16T16:11:12.570-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application CREDITASSESSOR with eureka with status DOWN
+2025-10-16T16:11:12.570-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1760641872570, current=DOWN, previous=UP]
+2025-10-16T16:11:12.571-03:00  INFO 9088 --- [creditassessor] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CREDITASSESSOR/creditassessor:2c05044c8f200f292f750a53ba59df95: registering service...
+2025-10-16T16:11:12.573-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-16T16:11:12.578-03:00  INFO 9088 --- [creditassessor] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-10-16T16:11:12.595-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2025-10-16T16:11:12.643-03:00  INFO 9088 --- [creditassessor] [DiscoveryClient-InstanceInfoReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CREDITASSESSOR/creditassessor:2c05044c8f200f292f750a53ba59df95 - registration status: 204
+2025-10-16T16:11:12.644-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2025-10-16T16:11:12.707-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CREDITASSESSOR/creditassessor:2c05044c8f200f292f750a53ba59df95 - deregister  status: 200
+2025-10-16T16:11:12.708-03:00  INFO 9088 --- [creditassessor] [SpringApplicationShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
