@@ -15,8 +15,6 @@ eureka:
     service-url:
       defaultZone: http://eureka-user-course:eru-reuesrkeauo-sc@${EUREKA_SERVER}:8761/eureka
   instance:
-    hostname: localhost
-    prefer-id-address: false
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 mq:
